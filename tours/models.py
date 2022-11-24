@@ -1,6 +1,7 @@
 from django.db import models
 from hotels.models import Hotel
 from contactface.models import ContactFace
+from django.core.exceptions import ValidationError
 
 
 class Tour(models.Model):
@@ -20,7 +21,15 @@ class Tour(models.Model):
     nights = models.IntegerField(null=True, editable=False, verbose_name='Количество ночей в отеле')
 
 
+    def clean(self):
+        if ((self.departure_date - self.arrival_date).days <= 0):
+            raise ValidationError('Дата выезда не может быть раньше даты заезда')
+        if (self.cost < 0):
+            raise ValidationError('Цена не может быть меньше 0 руб.')
+
+
     def save(self, *args, **kwargs) -> None:
+        
         self.days = (self.departure_date - self.arrival_date).days
         self.nights = self.days - 1
         return super().save(*args, **kwargs)
