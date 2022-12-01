@@ -19,7 +19,7 @@ class Order(models.Model):
         """Общая стоимость заказа"""
         return sum(map(lambda x: x.total_cost, self.orders.all()))
     
-    total_cost.fget.short_description = 'Общая стоимость заказа'
+    total_cost.fget.short_description = 'Общая стоимость заказа (руб.)'
 
     class Meta:
         verbose_name = 'Заказ тура'
@@ -36,7 +36,7 @@ class Order(models.Model):
 
 class OrderTour(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, verbose_name='Тур')
-    cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Цена')
+    cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Цена (руб.)')
     tourist_amount = models.PositiveIntegerField(verbose_name='Количество человек')
     total_cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Стоимость', editable=False)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='orders')

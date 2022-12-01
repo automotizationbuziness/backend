@@ -36,7 +36,7 @@ addEventListener('load', () => {
 
         var element = document.getElementById(`id_orders-${ind}-cost`)
         if (element.value.length == 0) {
-            element.value = '1';
+            element.value = '1.00';
         }
         console.log(element)
         element.addEventListener('change', (e) => {
