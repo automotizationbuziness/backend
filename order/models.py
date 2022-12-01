@@ -38,7 +38,7 @@ class OrderTour(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, verbose_name='Тур')
     cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Цена (руб.)')
     tourist_amount = models.PositiveIntegerField(verbose_name='Количество человек')
-    total_cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Стоимость', editable=False)
+    total_cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Стоимость (руб.)', editable=False)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='orders')
 
     
