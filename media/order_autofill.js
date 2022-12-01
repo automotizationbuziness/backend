@@ -35,6 +35,9 @@ addEventListener('load', () => {
 
 
         var element = document.getElementById(`id_orders-${ind}-cost`)
+        if (element.value.length == 0) {
+            element.value = '1';
+        }
         console.log(element)
         element.addEventListener('change', (e) => {
             const id = e.target.id.match(/\d+/)[0];
@@ -58,6 +61,9 @@ addEventListener('load', () => {
         })
 
         var element = document.getElementById(`id_orders-${ind}-tourist_amount`)
+        if (element.value.length == 0) {
+            element.value = '1';
+        }
         element.addEventListener('change', (e) => {
             const id = e.target.id.match(/\d+/)[0]
             const people = parseFloat(document.getElementById(`id_orders-${id}-cost`).value)
