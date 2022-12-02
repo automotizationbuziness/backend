@@ -19,6 +19,7 @@ class OrderTourInline(admin.TabularInline):
 class AdminOrder(admin.ModelAdmin):
     model = Order
     inlines = [OrderTourInline]
+    #fields = ['client', 'payment_type', 'orders']
 
     def get_readonly_fields(self, request, obj=None):
         try:

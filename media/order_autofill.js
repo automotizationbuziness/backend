@@ -91,14 +91,16 @@ function init() {
 
 addEventListener('load', () => {
     init()
-    var val = document.evaluate("//a[contains(., 'Добавить еще один Продаваемый тур')]", document, null, XPathResult.ANY_TYPE, null);
+    setTimeout(() => {
+        var val = document.evaluate("//a[contains(., 'Добавить еще один Продаваемый тур')]", document, null, XPathResult.ANY_TYPE, null);
     //console.log(val.iterateNext(), "fuck")
-    var but = val.iterateNext()
-    but.addEventListener('click', () => {
-        setTimeout(() => {
-            init();
-        }, 1000)
-    })
+        var but = val.iterateNext()
+        but.addEventListener('click', () => {
+            setTimeout(() => {
+                init();
+            }, 1000)
+        })
+    }, 1000)
     $('.form-row.field-total_cost').insertBefore('.submit-row')
 
     
