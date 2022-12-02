@@ -1,5 +1,7 @@
-addEventListener('load', () => {
+
+function init() {
     var ind = 0;
+    console.log("fuuuck")
     while (true) {
         var element = document.getElementById(`id_orders-${ind}-tour`)
         if (!element) break;
@@ -85,9 +87,19 @@ addEventListener('load', () => {
         })
         ind++;
     }
-    
+}
+
+addEventListener('load', () => {
+    init()
+    var val = document.evaluate("//a[contains(., 'Добавить еще один Продаваемый тур')]", document, null, XPathResult.ANY_TYPE, null);
+    //console.log(val.iterateNext(), "fuck")
+    var but = val.iterateNext()
+    but.addEventListener('click', () => {
+        setTimeout(() => {
+            init();
+        }, 1000)
+    })
     $('.form-row.field-total_cost').insertBefore('.submit-row')
 
-
-
+    
 })
