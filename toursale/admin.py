@@ -17,11 +17,6 @@ class TourAdmin(admin.ModelAdmin):
         return redirect(
             f'/admin/toursale/toursaleend/{body}/change/'
         )
-        return redirect(max(map(lambda x: x.id, TourSaleEnd.objects.all())))
-    
-    def response_change(self, request, obj, post_url_continue=None):
-        print("fuuuck")
-        return redirect('google.com')
 
 
 class OrderTourEndInline(admin.TabularInline):
