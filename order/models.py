@@ -35,7 +35,7 @@ class Order(models.Model):
     #     return super().save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f'Заказ тура у {self.client} на {self.total_cost}руб.'
+        return f'Заказ тура у {self.client} (статус: {self.state})'
 
 
 class OrderTour(models.Model):
