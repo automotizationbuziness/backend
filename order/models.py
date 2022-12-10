@@ -15,7 +15,7 @@ class Order(models.Model):
 
     client = models.ForeignKey(TourClient, on_delete=models.CASCADE, verbose_name='Клиент')
     payment_type = models.CharField(choices=PAYMENT_TYPES_CHOICES, max_length=100, verbose_name='Вид оплаты')
-    state = models.CharField(choices=STATE_CHOICES, default='Действует', max_length=100)
+    state = models.CharField(choices=STATE_CHOICES, default='Действует', max_length=100, verbose_name='Статус заказа')
     #total_cost = models.DecimalField(max_digits=100, decimal_places=2, verbose_name='Общая стоимость заказа', editable=False, default=0)
 
     @property
