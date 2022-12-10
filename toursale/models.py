@@ -9,7 +9,10 @@ class TourSale(models.Model):
 
     def save(self, *args, **kwargs) -> None:
         #self.total_cost = self.sale.total_cost
-        self.sale.state = 'Завершен (положительно)'
+        #self.sale.state = 'Завершен (положительно)'
+        sale = self.sale
+        sale.state = 'Завершен (положительно)'
+        sale.save()
         if self._state.adding:
             tour_end = TourSaleEnd()
             tour_end.client = self.sale.client
