@@ -1,7 +1,5 @@
 from django.db import models
 from tours.models import Tour, TourClient
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 class Order(models.Model):
@@ -9,9 +7,15 @@ class Order(models.Model):
         ('Предоплата', 'Предоплата'),
         ('Кредит', 'Кредит')
     )
+    STATE_CHOICES = (
+        ('Завершен (положительно)', 'Завершен (положительно)'),
+        ('Действует', 'Действует'),
+        ('Отменен', 'Отменен')
+    )
 
     client = models.ForeignKey(TourClient, on_delete=models.CASCADE, verbose_name='Клиент')
     payment_type = models.CharField(choices=PAYMENT_TYPES_CHOICES, max_length=100, verbose_name='Вид оплаты')
+    state = models.CharField(choices=STATE_CHOICES, default='Действует', max_length=100)
     #total_cost = models.DecimalField(max_digits=100, decimal_places=2, verbose_name='Общая стоимость заказа', editable=False, default=0)
 
     @property
@@ -39,8 +43,7 @@ class OrderTour(models.Model):
     cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Цена (руб.)')
     tourist_amount = models.PositiveIntegerField(verbose_name='Количество человек')
     total_cost = models.DecimalField(max_digits=100, max_length=100, decimal_places=2, verbose_name='Стоимость (руб.)', editable=False)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='orders')
-
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='orders', verbose_name='Заказ')
     
     def save(self, *args, **kwargs) -> None:
         self.total_cost = self.tourist_amount * self.cost

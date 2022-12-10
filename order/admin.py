@@ -15,6 +15,7 @@ class OrderTourInline(admin.TabularInline):
             return [f.name for f in obj._meta.fields if not f.editable] + 'total_cost'
         except:
             return ['total_cost']
+    #exclude = ['tour_endings']
 
 class AdminOrder(admin.ModelAdmin):
     model = Order
