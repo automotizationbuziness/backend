@@ -10,6 +10,9 @@ class Report(models.Model):
     period_gte = models.DateField(verbose_name='Дата (конец отчета)')
     payed_sum = models.DecimalField(editable=False, max_digits=100, decimal_places=2, verbose_name='Остаток на счете', null=True)
 
+    class Meta:
+        verbose_name = 'Отчет'
+        verbose_name_plural = 'Отчеты'
 
     def __str__(self):
         return f"Отчет с {self.period_lte} по {self.period_gte}"
