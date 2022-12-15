@@ -2,6 +2,7 @@ from django.db import models
 from hotels.models import Hotel
 from contactface.models import ContactFace
 from django.core.exceptions import ValidationError
+from datetime import date
 
 
 class Tour(models.Model):
@@ -19,7 +20,7 @@ class Tour(models.Model):
     description = models.TextField(max_length=500, verbose_name='Описание тура')
     days = models.IntegerField(null=True, editable=False, verbose_name='Количество дней в отеле')
     nights = models.IntegerField(null=True, editable=False, verbose_name='Количество ночей в отеле')
-
+    created = models.DateField(auto_now=True, null=True)
 
     def clean(self):
         if ((self.departure_date - self.arrival_date).days <= 0):

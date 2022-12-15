@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'tours',
     'contactface',
     'order',
-    'toursale'
+    'toursale',
+    'report'
 ]
 
 MIDDLEWARE = [
